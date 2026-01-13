@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Amorzinhos 💖</title>
+
   <style>
     body {
       background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
@@ -13,6 +14,8 @@
       align-items: center;
       height: 100vh;
       text-align: center;
+      flex-direction: column;
+      margin: 0;
     }
 
     .card {
@@ -20,6 +23,8 @@
       padding: 30px;
       border-radius: 20px;
       box-shadow: 0 0 20px rgba(255, 0, 100, 0.3);
+      margin-bottom: 20px;
+      max-width: 320px;
     }
 
     h1 {
@@ -30,8 +35,33 @@
       font-size: 1.4em;
       margin-top: 15px;
     }
+
+    /* 🔥 BOTÃO DA MÚSICA */
+    button {
+      margin-top: 15px;
+      padding: 12px 22px;
+      background: linear-gradient(135deg, #ff4d88, #ff1f66);
+      border: none;
+      border-radius: 14px;
+      color: #fff;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(255, 77, 136, 0.6);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 77, 136, 0.9);
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
   </style>
 </head>
+
 <body>
 
   <div class="card">
@@ -40,17 +70,20 @@
     <div class="time" id="contador"></div>
     <p>Te amo todos os dias 🖤</p>
   </div>
-  
-<button id="btnMusica" onclick="toggleMusica()">
-  🎵 Tocar música
-</button>
 
-<audio id="musica" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
+  <!-- 🎵 BOTÃO -->
+  <button id="btnMusica" onclick="toggleMusica()">🎵 Tocar música</button>
+
+  <!-- 🎶 ÁUDIO DO REPOSITÓRIO -->
+  <audio id="musica" loop>
+    <source src="musica/aliancas.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
 
   <script>
     const inicio = new Date("2025-09-25T00:00:00");
+    const musica = document.getElementById("musica");
+    const botao = document.getElementById("btnMusica");
 
     function atualizar() {
       const agora = new Date();
@@ -64,9 +97,22 @@
         `${dias} dias, ${horas} horas e ${minutos} minutos`;
     }
 
+    function toggleMusica() {
+      if (musica.paused) {
+        musica.play();
+        botao.innerText = "⏸️ Pausar música";
+      } else {
+        musica.pause();
+        botao.innerText = "🎵 Tocar música";
+      }
+    }
+
     atualizar();
     setInterval(atualizar, 60000);
   </script>
+
+</body>
+</html>
 
 </body>
 </html>
