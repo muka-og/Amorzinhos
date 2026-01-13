@@ -36,7 +36,6 @@
       margin-top: 15px;
     }
 
-    /* 🔥 BOTÃO DA MÚSICA */
     button {
       margin-top: 15px;
       padding: 12px 22px;
@@ -71,12 +70,10 @@
     <p>Te amo todos os dias 🖤</p>
   </div>
 
-  <!-- 🎵 BOTÃO -->
   <button id="btnMusica" onclick="toggleMusica()">🎵 Tocar música</button>
 
-  <!-- 🎶 ÁUDIO DO REPOSITÓRIO -->
   <audio id="musica" loop>
-    <source src="música/aliancas.mp3" type="audio/mpeg">
+    <source src="musica/aliancas.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
 
@@ -87,33 +84,5 @@
 
     function atualizar() {
       const agora = new Date();
-      const diff = agora - inicio;
-
-      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diff / (1000 * 60)) % 60);
-
-      document.getElementById("contador").innerHTML =
-        `${dias} dias, ${horas} horas e ${minutos} minutos`;
-    }
-
-    function toggleMusica() {
-      if (musica.paused) {
-        musica.play();
-        botao.innerText = "⏸️ Pausar música";
-      } else {
-        musica.pause();
-        botao.innerText = "🎵 Tocar música";
-      }
-    }
-
-    atualizar();
-    setInterval(atualizar, 60000);
-  </script>
-
-</body>
-</html>
-
-</body>
-</html>
+      const diff = agora - in
 
