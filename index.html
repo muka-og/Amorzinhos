@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Amorzinhos 💖</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .card {
+      background: #111;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 0, 100, 0.3);
+    }
+
+    h1 {
+      color: #ff4d88;
+    }
+
+    .time {
+      font-size: 1.4em;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>💖 Amorzinhos 💖</h1>
+    <p>Estamos juntos há:</p>
+    <div class="time" id="contador"></div>
+    <p>Te amo todos os dias 🖤</p>
+  </div>
+
+  <script>
+    const inicio = new Date("2025-09-25T00:00:00");
+
+    function atualizar() {
+      const agora = new Date();
+      const diff = agora - inicio;
+
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+
+      document.getElementById("contador").innerHTML =
+        `${dias} dias, ${horas} horas e ${minutos} minutos`;
+    }
+
+    atualizar();
+    setInterval(atualizar, 60000);
+  </script>
+
+</body>
+</html>
 
