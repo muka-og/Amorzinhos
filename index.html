@@ -72,7 +72,7 @@
 
   <button id="btnMusica" onclick="toggleMusica()">🎵 Tocar música</button>
 
-  <audio id="musica" loop>
+  <audio id="musica" loop preload="auto">
     <source src="musica/aliancas.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
@@ -84,5 +84,29 @@
 
     function atualizar() {
       const agora = new Date();
-      const diff = agora - in
+      const diff = agora - inicio;
 
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+
+      document.getElementById("contador").innerText =
+        `${dias} dias, ${horas} horas e ${minutos} minutos`;
+    }
+
+    function toggleMusica() {
+      if (musica.paused) {
+        musica.play();
+        botao.innerText = "⏸️ Pausar música";
+      } else {
+        musica.pause();
+        botao.innerText = "🎵 Tocar música";
+      }
+    }
+
+    atualizar();
+    setInterval(atualizar, 60000);
+  </script>
+
+</body>
+</html>
