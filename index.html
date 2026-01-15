@@ -6,7 +6,7 @@
 
   <style>
     body {
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      background: radial-gradient(circle at top, #1a1a1a, #000);
       color: #fff;
       font-family: Arial, sans-serif;
       display: flex;
@@ -15,37 +15,48 @@
       height: 100vh;
       flex-direction: column;
       margin: 0;
-      text-align: center;
     }
 
     .card {
-      background: #111;
+      background: #0f0f0f;
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 0 25px rgba(255, 0, 100, 0.4);
-      margin-bottom: 25px;
+      box-shadow: 0 0 30px rgba(255, 77, 136, 0.35);
       max-width: 320px;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     h1 {
       color: #ff4d88;
+      margin-bottom: 10px;
     }
 
     .time {
-      font-size: 1.3em;
-      margin-top: 10px;
+      font-size: 1.2em;
+      margin: 15px 0;
     }
 
     button {
       padding: 14px 26px;
       background: linear-gradient(135deg, #ff4d88, #ff1f66);
       border: none;
-      border-radius: 999px;
+      border-radius: 16px;
       color: #fff;
       font-size: 1em;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 0 18px rgba(255, 77, 136, 0.7);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 26px rgba(255, 77, 136, 1);
+    }
+
+    button:active {
+      transform: scale(0.97);
     }
   </style>
 </head>
@@ -61,41 +72,44 @@
 
   <button id="btnMusica">🎵 Tocar música</button>
 
-  <audio id="musica" loop>
-    <source src="musica/aliancas.mp3" type="audio/mpeg">
-  </audio>
+  <audio id="musica" loop></audio>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const inicio = new Date("2025-09-25T00:00:00");
-      const contador = document.getElementById("contador");
-      const musica = document.getElementById("musica");
-      const botao = document.getElementById("btnMusica");
+    // DATA DE INÍCIO
+    const inicio = new Date("2025-09-25T00:00:00");
 
-      function atualizar() {
-        const agora = new Date();
-        const diff = agora - inicio;
+    // ELEMENTOS
+    const contador = document.getElementById("contador");
+    const musica = document.getElementById("musica");
+    const botao = document.getElementById("btnMusica");
 
-        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutos = Math.floor((diff / (1000 * 60)) % 60);
+    // LINK EXTERNO DO MP3
+    musica.src = "https://apparent-green-a0bqdupkva.edgeone.app/aliancas.mp3";
 
-        contador.innerText =
-          `${dias} dias, ${horas} horas e ${minutos} minutos`;
+    // CONTADOR
+    function atualizar() {
+      const agora = new Date();
+      const diff = agora - inicio;
+
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+
+      contador.innerHTML = `${dias} dias, ${horas} horas e ${minutos} minutos`;
+    }
+
+    atualizar();
+    setInterval(atualizar, 60000);
+
+    // BOTÃO DA MÚSICA
+    botao.addEventListener("click", () => {
+      if (musica.paused) {
+        musica.play();
+        botao.innerText = "⏸️ Pausar música";
+      } else {
+        musica.pause();
+        botao.innerText = "🎵 Tocar música";
       }
-
-      botao.addEventListener("click", () => {
-        if (musica.paused) {
-          musica.play();
-          botao.innerText = "⏸️ Pausar música";
-        } else {
-          musica.pause();
-          botao.innerText = "🎵 Tocar música";
-        }
-      });
-
-      atualizar();
-      setInterval(atualizar, 60000);
     });
   </script>
 
